@@ -1,4 +1,5 @@
 一、项目概述
+
 1.1 项目背景
 在大学生活中，课程、作业、社团活动、考试等事务繁多，容易导致时间管理混乱和重要事项遗忘。为了帮助大学生更高效地管理个人日程，我们开发了这个基于 Python 的大学生日程管理系统。
 
@@ -6,6 +7,7 @@
 本项目旨在开发一个简单易用的日程管理系统，让大学生能够方便地添加、查看、修改和删除日程安排，同时具备提醒功能，确保重要事项不会被遗忘。
 
 二、功能需求
+
 2.1 日程添加
 用户可以添加新的日程，包括日程的名称、开始时间、结束时间、地点和备注等信息。
 
@@ -22,6 +24,7 @@
 系统可以在日程开始前一定时间提醒用户，提醒方式可以是弹出消息框。
 
 三、项目结构
+
 3.1 文件结构
 schedule_manager/
 ├── main.py
@@ -33,7 +36,9 @@ main.py：主程序入口，负责与用户交互，调用其他模块的功能�
 schedule.py：日程管理模块，负责日程的添加、查看、修改和删除操作。
 reminder.py：提醒模块，负责日程提醒功能。
 data/schedules.json：用于存储日程数据的文件。
+
 3.2 模块功能
+
 3.2.1 schedule.py
 import json
 
@@ -72,6 +77,7 @@ class ScheduleManager:
     def save_schedules(self):
         with open(self.file_path, 'w') as f:
             json.dump(self.schedules, f, indent=4)
+
 3.2.2 reminder.py
 import time
 import tkinter as tk
@@ -89,6 +95,7 @@ def check_reminders(schedules):
         start_time = time.mktime(time.strptime(schedule['start_time'], '%Y-%m-%d %H:%M'))
         if start_time - current_time <= 60:  # 提前 1 分钟提醒
             remind(schedule)
+
 3.2.3 main.py
 from schedule import ScheduleManager
 from reminder import check_reminders
@@ -161,7 +168,9 @@ while True:
     # 检查提醒
     check_reminders(schedule_manager.view_schedules())
     time.sleep(1)
+
 四、安装与运行
+
 4.1 安装依赖
 本项目使用 Python 标准库，无需额外安装依赖。
 
@@ -171,13 +180,16 @@ while True:
 打开终端，进入项目目录。
 运行以下命令启动程序：
 python main.py
+
 五、测试计划
+
 5.1 功能测试
 日程添加：添加不同类型的日程，检查是否能正确保存到文件中。
 日程查看：查看所有日程和特定日期的日程，检查显示结果是否正确。
 日程修改：修改已有的日程，检查文件中的数据是否更新。
 日程删除：删除日程，检查文件中的数据是否正确删除。
 提醒功能：设置一个即将开始的日程，检查是否能在规定时间弹出提醒框。
+
 5.2 边界测试
 输入无效的日期格式，检查系统是否能正确处理。
 输入超出范围的日程编号，检查系统是否给出错误提示。
